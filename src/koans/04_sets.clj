@@ -1,18 +1,22 @@
 (meditations
   "You can create a set by converting another collection"
-  (= #{3} (set __))
+  (= #{3} (set [3]))
+
+  "You can also create a set by converting _another_ collection"
+  (= #{3} (set (list 3)))
 
   "Counting them is like counting other collections"
-  (= __ (count #{1 2 3}))
+  (= 3 (count #{1 2 3}))
 
   "Remember that a set is a *mathematical* set"
-  (= __ (set '(1 1 2 2 3 3 4 4 5 5)))
+  (= (set [5 4 3 2 1]) (set '(1 1 2 2 3 3 4 4 5 5)))
 
   "You can ask clojure for the union of two sets"
-  (= __ (clojure.set/union #{1 2 3 4} #{2 3 5}))
+  ;; well, duh.
+  (= (set [1 2 3 4 5]) (clojure.set/union #{1 2 3 4} #{2 3 5}))
 
   "And also the intersection"
-  (= __ (clojure.set/intersection #{1 2 3 4} #{2 3 5}))
+  (= (set [2 3]) (clojure.set/intersection #{1 2 3 4} #{2 3 5}))
 
   "But don't forget about the difference"
-  (= __ (clojure.set/difference #{1 2 3 4 5} #{2 3 5})))
+  (= (set [1 4]) (clojure.set/difference #{1 2 3 4 5} #{2 3 5})))
