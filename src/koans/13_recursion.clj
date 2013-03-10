@@ -7,14 +7,26 @@
   (loop [n   n
          acc true]
     (if (= n 0)
-      __
+      acc
       (recur (dec n) (not acc)))))
 
+;; Seems awkward.  I wonder what the official answer is.
 (defn recursive-reverse [coll]
-  __)
+  (loop [coll coll
+         reversed '()]
+    (if (= 0 (count coll))
+      reversed
+      (let [item (first coll)]
+        (recur (rest coll)
+               (cons item reversed))))))
 
 (defn factorial [n]
-  __)
+  (loop [n n
+         product 1]
+    (if (= 0 n)
+      product
+      (recur (- n 1)
+             (* n product)))))
 
 (meditations
   "Recursion ends with a base case"
